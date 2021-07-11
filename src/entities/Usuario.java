@@ -44,12 +44,6 @@ public class Usuario implements IUsuario {
 	}
 
 	@Override
-	public Grupo criarGrupo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void incluirUsuario() {
 		// TODO Auto-generated method stub
 		
@@ -62,15 +56,18 @@ public class Usuario implements IUsuario {
 	}
 
 	@Override
-	public void enviarMensagem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void imprimirInformacoesUsuarios() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public String toString() {
+		return "{" +
+			" nome='" + getNome() + "'" +
+			", telefone='" + getTelefone() + "'" +
+			", status='" + getStatus() + "'" +
+			", foto='" + getFoto() + "'" +
+			"}";
+	}
 }

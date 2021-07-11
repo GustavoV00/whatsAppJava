@@ -1,9 +1,10 @@
 package creator;
 
 import entities.Mensagem;
+import entities.Usuario;
 
 public class CMensagem {
-	public Mensagem criarMensagem() {
-		return new Mensagem(null, null, null, null, null);
+	public Mensagem criarMensagem(Usuario autor) {
+		return new Mensagem(autor);
 	}
 }

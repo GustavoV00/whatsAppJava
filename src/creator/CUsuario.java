@@ -3,7 +3,7 @@ package creator;
 import entities.Usuario;
 
 public class CUsuario {
-	public Usuario criarUsuario() {
-		return new Usuario(null, null, null, null);
+	public Usuario criarUsuario(String nome, String telefone, String status, String foto) {
+		return new Usuario(nome, telefone, status, foto);
 	}
 }

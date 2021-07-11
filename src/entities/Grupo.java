@@ -9,6 +9,10 @@ public class Grupo implements IGrupo {
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private ArrayList<Mensagem> mensagem = new ArrayList<Mensagem>();
 
+
+	public Grupo(String descricao) {
+		this.descricao = descricao;
+	}
 	public Grupo(String descricao, ArrayList<Usuario> usuarios, ArrayList<Mensagem> mensagem) {
 		this.descricao = descricao;
 		this.usuarios = usuarios;
@@ -50,4 +54,14 @@ public class Grupo implements IGrupo {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+			" descricao='" + getDescricao() + "'" +
+			", usuarios='" + getUsuarios() + "'" +
+			", mensagem='" + getMensagem() + "'" +
+			"}";
+	}
+
 }
