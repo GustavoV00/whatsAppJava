@@ -11,9 +11,6 @@ public class Mensagem implements IMensagem {
 	private Date dataEnvio;
 	private String mensagemGrupo;
 
-	public Mensagem(Usuario autor) {
-		this.autor = autor;
-	}
 	public Mensagem(Usuario autor, TipoMensagem tipoMsg, String corpoMsg, Date dataEnvio, String mensagemGrupo) {
 		this.autor = autor;
 		this.tipoMsg = tipoMsg;
@@ -60,18 +57,6 @@ public class Mensagem implements IMensagem {
 
 	public void setMensagemGrupo(String mensagemGrupo) {
 		this.mensagemGrupo = mensagemGrupo;
-	}
-
-
-	@Override
-	public String toString() {
-		return "{" +
-			" autor='" + getAutor() + "'" +
-			", tipoMsg='" + getTipoMsg() + "'" +
-			", corpoMsg='" + getCorpoMsg() + "'" +
-			", dataEnvio='" + getDataEnvio() + "'" +
-			", mensagemGrupo='" + getMensagemGrupo() + "'" +
-			"}";
 	}
 
 }

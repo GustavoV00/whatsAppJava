@@ -2,10 +2,13 @@ package interfaces;
 
 import entities.Grupo;
 import entities.Usuario;
+import entities.*;
+import java.util.*;
 
 public interface IUsuario {
 	public Grupo criarGrupo(String descricao, Usuario criadorDoGrupo);
 	public void incluirUsuario(Usuario u, Grupo g);
 	public void incluirAdm(Usuario u, Grupo g);
-	public void imprimirInformacoesUsuarios();
+	public void imprimirInformacoesUsuarios(Usuario u);
+	public void enviarMensagem(Grupo g, String str, TipoMensagem tipo, Usuario user);
 }

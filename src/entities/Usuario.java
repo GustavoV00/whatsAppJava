@@ -1,8 +1,10 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.*;
 
 import creator.CGrupo;
+import creator.CMensagem;
 import interfaces.IUsuario;
 
 public class Usuario implements IUsuario {
@@ -80,6 +82,14 @@ public class Usuario implements IUsuario {
 	}
 
 	@Override
+	public void enviarMensagem(Grupo g, String str, TipoMensagem tipo, Usuario user){
+		CMensagem criadorMensagen = new CMensagem();
+		Mensagem msg = criadorMensagen.criarMensagem(user, tipo, str, new Date(), g.getDescricao());
+		g.getMensagem().add(msg);
+        user.getMensagem().add(msg);
+	}
+
+	@Override
 	public void incluirUsuario(Usuario u, Grupo g) {
 		u.getGrupos().add(g);
 		g.getUsuarios().add(u);
@@ -91,11 +101,6 @@ public class Usuario implements IUsuario {
 	}
 
 	@Override
-	public void imprimirInformacoesUsuarios() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void imprimirInformacoesUsuarios(Usuario u){
 		System.out.println();
 		System.out.println("Nome: " + u.nome);
