@@ -2,7 +2,9 @@ package entities;
 
 import java.util.Date;
 
-public class Mensagem {
+import interfaces.IMensagem;
+
+public class Mensagem implements IMensagem {
 	private Usuario autor;
 	private TipoMensagem tipoMsg;
 	private String corpoMsg;

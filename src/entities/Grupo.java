@@ -2,7 +2,9 @@ package entities;
 
 import java.util.ArrayList;
 
-public class Grupo {
+import interfaces.IGrupo;
+
+public class Grupo implements IGrupo {
 	private String descricao;
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private ArrayList<Mensagem> mensagem = new ArrayList<Mensagem>();
@@ -37,4 +39,15 @@ public class Grupo {
 		this.mensagem = mensagem;
 	}
 
+	@Override
+	public void imprimirInformacoesGrupo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void excluirMensagem() {
+		// TODO Auto-generated method stub
+		
+	}
 }

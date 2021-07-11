@@ -1,6 +1,8 @@
 package entities;
 
-public class Usuario {
+import interfaces.IUsuario;
+
+public class Usuario implements IUsuario {
 	private String nome;
 	private String telefone;
 	private String status;
@@ -39,6 +41,36 @@ public class Usuario {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	@Override
+	public Grupo criarGrupo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void incluirUsuario() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void incluirAdm() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enviarMensagem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void imprimirInformacoesUsuarios() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
