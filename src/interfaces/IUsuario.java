@@ -6,8 +6,7 @@ import entities.*;
 import java.util.*;
 
 public interface IUsuario {
-	public Grupo criarGrupo(String descricao, Usuario criadorDoGrupo);
-	public void incluirUsuario(Usuario u, Grupo g);
+	public void incluirUsuario(Usuario u, Grupo g, Usuario adm);
 	public void incluirAdm(Usuario u, Grupo g);
 	public void imprimirInformacoesUsuarios(Usuario u);
 	public void enviarMensagem(Grupo g, String str, TipoMensagem tipo, Usuario user);

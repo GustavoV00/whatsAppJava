@@ -72,16 +72,6 @@ public class Usuario implements IUsuario {
 	}
 
 	@Override
-	public Grupo criarGrupo(String descricao, Usuario criadorDoGrupo) {
-		CGrupo criadorCGrupo = new CGrupo();
-		Grupo g = criadorCGrupo.criarGrupo(descricao);
-
-		incluirUsuario(criadorDoGrupo, g);
-		incluirAdm(criadorDoGrupo, g);
-		return g;
-	}
-
-	@Override
 	public void enviarMensagem(Grupo g, String str, TipoMensagem tipo, Usuario user){
 		CMensagem criadorMensagen = new CMensagem();
 		Mensagem msg = criadorMensagen.criarMensagem(user, tipo, str, new Date(), g.getDescricao());
@@ -90,14 +80,18 @@ public class Usuario implements IUsuario {
 	}
 
 	@Override
-	public void incluirUsuario(Usuario u, Grupo g) {
-		u.getGrupos().add(g);
-		g.getUsuarios().add(u);
+	public void incluirUsuario(Usuario u, Grupo g, Usuario adm) {
+		if(adm == g.getArrayAdm().get(0)) {
+			u.getGrupos().add(g);
+			g.getUsuarios().add(u);
+
+		}else
+			System.out.println("Usuario nao eh adiministrador");
 	}
 
 	@Override
-	public void incluirAdm(Usuario u, Grupo g) {
-		g.getArrayAdm().add(u);
+	public void incluirAdm(Usuario adm, Grupo g) {
+		g.getArrayAdm().add(adm);
 	}
 
 	@Override
