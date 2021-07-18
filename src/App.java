@@ -6,7 +6,6 @@ import entities.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-		private static FactoryGrupo grupo;
 		CUsuario criadorUsuario = new CUsuario();
 		CGrupo grupo = new CGrupo();
 		Usuario p1 = criadorUsuario.criarUsuario("p1", "419999", "onraine", "foto");
