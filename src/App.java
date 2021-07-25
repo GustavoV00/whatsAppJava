@@ -1,8 +1,8 @@
-import creator.CUsuario;
 import creator.CGrupo;
-import entities.Usuario;
+import creator.CUsuario;
 import entities.Grupo;
-import entities.*;
+import entities.TipoMensagem;
+import entities.Usuario;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -13,13 +13,17 @@ public class App {
 		Usuario p3 = criadorUsuario.criarUsuario("p3", "439999", "ausente", "semFoto");
 		Grupo g1 = grupo.criarGrupo("g1", p1);
 
-		p1.enviarMensagem(g1, "mensagem legal 2", TipoMensagem.TEXTO, p1 );
-		p1.enviarMensagem(g1, "mensagem legal", TipoMensagem.TEXTO, p1 );
+		Usuario.gerarComandos(p2, TipoMensagem.TEXTO, "test1", g1, p1);
+		Usuario.nomeDoComando("Incluir Usuario");
+		Usuario.nomeDoComando("Enviar Mensagem");
 
-		p1.incluirUsuario(p2, g1, p3);
+		Usuario.gerarComandos(p1, TipoMensagem.TEXTO, "TEST2", g1, p1);
+		Usuario.nomeDoComando("Enviar Mensagem");
+
+		// p1.incluirUsuario(p2, g1, p3);
 		// g1.imprimirInformacoesGrupo(g1);
 
-		g1.excluirMensagem(p1, g1);
+		// g1.excluirMensagem(p1, g1);
 		// g1.imprimirInformacoesGrupo(g1);
 		p1.imprimirInformacoesUsuarios(p1);
 		p1.imprimirInformacoesUsuarios(p2);

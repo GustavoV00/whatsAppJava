@@ -1,10 +1,13 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import creator.CGrupo;
-import creator.CMensagem;
+import command.Command;
+import command.EnviarMensagemCommand;
+import command.IncluiUsuarioComumCommand;
+import command.IncluirUsuarioAdmCommand;
 import interfaces.IUsuario;
 
 public class Usuario implements IUsuario {
@@ -14,7 +17,7 @@ public class Usuario implements IUsuario {
 	private String foto;
 	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
 	private ArrayList<Mensagem> mensagem = new ArrayList<Mensagem>();
-
+	public static Map<String, Command> comandos = new HashMap<String, Command>();
 
 	public Usuario(String nome, String telefone, String status, String foto) {
 		this.nome = nome;
@@ -71,28 +74,30 @@ public class Usuario implements IUsuario {
 		this.mensagem = mensagem;
 	}
 
-	@Override
-	public void enviarMensagem(Grupo g, String str, TipoMensagem tipo, Usuario user){
-		CMensagem criadorMensagen = new CMensagem();
-		Mensagem msg = criadorMensagen.criarMensagem(user, tipo, str, new Date(), g.getDescricao());
-		g.getMensagem().add(msg);
-        user.getMensagem().add(msg);
+	public static void nomeDoComando(String comando){
+		comandos.get(comando).executarComando();
 	}
 
-	@Override
-	public void incluirUsuario(Usuario u, Grupo g, Usuario adm) {
-		if(adm == g.getArrayAdm().get(0)) {
-			u.getGrupos().add(g);
-			g.getUsuarios().add(u);
-
-		}else
-			System.out.println("Usuario nao eh adiministrador");
+	public static void gerarComandos(Usuario user, TipoMensagem tipo, String str, Grupo g, Usuario adm){
+		comandos.put("Enviar Mensagem", new EnviarMensagemCommand(user, tipo, str, g));
+		comandos.put("Incluir Usuario", new IncluiUsuarioComumCommand(user, adm, g));
+		comandos.put("Incluir Usuario Adm", new IncluirUsuarioAdmCommand(adm, g));
 	}
 
-	@Override
-	public void incluirAdm(Usuario adm, Grupo g) {
-		g.getArrayAdm().add(adm);
-	}
+//	@Override
+//	public void incluirUsuario(Usuario u, Grupo g, Usuario adm) {
+//		if(adm == g.getArrayAdm().get(0)) {
+//			u.getGrupos().add(g);
+//			g.getUsuarios().add(u);
+//
+//		}else
+//			System.out.println("Usuario nao eh adiministrador");
+//	}
+//
+//	@Override
+//	public void incluirAdm(Usuario adm, Grupo g) {
+//		g.getArrayAdm().add(adm);
+//	}
 
 	@Override
 	public void imprimirInformacoesUsuarios(Usuario u){

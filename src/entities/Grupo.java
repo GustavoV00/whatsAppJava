@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import entities.*;
 
 import interfaces.IGrupo;
 
