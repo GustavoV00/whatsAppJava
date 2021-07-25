@@ -26,6 +26,7 @@ public class EnviarMensagemCommand implements Command{
 		CMensagem criadorMensagen = new CMensagem();
 		Mensagem msg = criadorMensagen.criarMensagem(user, tipo, str, new Date(), g.getDescricao());
 		g.getMensagem().add(msg);
+        g.notificaObservadores(msg);
         user.getMensagem().add(msg);
     }
 }

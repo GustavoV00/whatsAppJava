@@ -1,5 +1,7 @@
 package entities;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 
 import interfaces.IMensagem;
@@ -10,6 +12,7 @@ public class Mensagem implements IMensagem {
 	private String corpoMsg;
 	private Date dataEnvio;
 	private String mensagemGrupo;
+	private ArrayList<Usuario> visualizacaoMensagem = new ArrayList<Usuario>();
 
 	public Mensagem(Usuario autor, TipoMensagem tipoMsg, String corpoMsg, Date dataEnvio, String mensagemGrupo) {
 		this.autor = autor;
@@ -57,6 +60,14 @@ public class Mensagem implements IMensagem {
 
 	public void setMensagemGrupo(String mensagemGrupo) {
 		this.mensagemGrupo = mensagemGrupo;
+	}
+
+	public ArrayList<Usuario> getVisualizacaoMensagem() {
+		return this.visualizacaoMensagem;
+	}
+
+	public void setVisualizacaoMensagem(ArrayList<Usuario> visualizacaoMensagem) {
+		this.visualizacaoMensagem = visualizacaoMensagem;
 	}
 
 }

@@ -8,9 +8,10 @@ import command.Command;
 import command.EnviarMensagemCommand;
 import command.IncluiUsuarioComumCommand;
 import command.IncluirUsuarioAdmCommand;
+import command.ExcluirMensagem;
 import interfaces.IUsuario;
 
-public class Usuario implements IUsuario {
+public class Usuario implements IUsuario  {
 	private String nome;
 	private String telefone;
 	private String status;
@@ -18,6 +19,7 @@ public class Usuario implements IUsuario {
 	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
 	private ArrayList<Mensagem> mensagem = new ArrayList<Mensagem>();
 	public static Map<String, Command> comandos = new HashMap<String, Command>();
+	private Map<String, ArrayList<Mensagem>> mensagensGrupo = new HashMap<String, ArrayList<Mensagem>>();
 
 	public Usuario(String nome, String telefone, String status, String foto) {
 		this.nome = nome;
@@ -25,6 +27,7 @@ public class Usuario implements IUsuario {
 		this.status = status;
 		this.foto = foto;
 	}
+
 
 	public String getNome() {
 		return this.nome;
@@ -74,6 +77,14 @@ public class Usuario implements IUsuario {
 		this.mensagem = mensagem;
 	}
 
+	public Map<String,ArrayList<Mensagem>> getMensagensGrupo() {
+		return this.mensagensGrupo;
+	}
+
+	public void setMensagensGrupo(Map<String,ArrayList<Mensagem>> mensagensGrupo) {
+		this.mensagensGrupo = mensagensGrupo;
+	}
+
 	public static void nomeDoComando(String comando){
 		comandos.get(comando).executarComando();
 	}
@@ -82,6 +93,11 @@ public class Usuario implements IUsuario {
 		comandos.put("Enviar Mensagem", new EnviarMensagemCommand(user, tipo, str, g));
 		comandos.put("Incluir Usuario", new IncluiUsuarioComumCommand(user, adm, g));
 		comandos.put("Incluir Usuario Adm", new IncluirUsuarioAdmCommand(adm, g));
+		comandos.put("Excluir Mensagem", new ExcluirMensagem(user, g));
+	}
+
+	public void atualizarMensagem(String grupo, ArrayList<Mensagem> mensagens){
+		mensagensGrupo.put(grupo, mensagens);
 	}
 
 //	@Override
@@ -100,7 +116,7 @@ public class Usuario implements IUsuario {
 //	}
 
 	@Override
-	public void imprimirInformacoesUsuarios(Usuario u){
+	public void imprimirInformacoesUsuarios(Usuario u, Map<String, ArrayList<Usuario>> usuarioVisualizou){
 		System.out.println();
 		System.out.println("Nome: " + u.nome);
 		System.out.println("Telefone: " + u.telefone);
@@ -125,8 +141,44 @@ public class Usuario implements IUsuario {
 			System.out.print("\"" + msg.getCorpoMsg() + "'" + ", ");
 			i += 1;
 		}
-		System.out.print("}");
+		System.out.print("}\n");
 
+		// Imprime todas as mensagens que vão ser enviadas aos grupos.
+		System.out.print("Mensagens atualizadas: ");
+
+		i = 0;
+		for(String grupo : u.mensagensGrupo.keySet()){
+			System.out.print("{ ");
+			System.out.print("\"" +  grupo +"\"");
+			
+			System.out.print(" : ");
+	
+			for(ArrayList<Mensagem> msg : u.mensagensGrupo.values()){
+				for(Mensagem corpoMsg : msg){
+					System.out.print("\"" + corpoMsg.getCorpoMsg() +"'" + ", ");
+				}
+			}
+			System.out.println("}");
+		}
+
+
+		System.out.print("Povo que visualizou as mensagens: { ");
+		for(String grupo : usuarioVisualizou.keySet()){
+			System.out.print("{ ");
+			System.out.print("\"" +  grupo +"\"");
+			System.out.print(" : ");
+			for(ArrayList<Usuario> user: usuarioVisualizou.values()){
+				for(Usuario uu : user){
+					System.out.print("\"" + uu.getNome() +"'" + ", ");
+				}
+			}
+			System.out.println("}");
+		}
+
+
+
+
+		
 		System.out.println("\n----------------------------------------------");
 	}
 
