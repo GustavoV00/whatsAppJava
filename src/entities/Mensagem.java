@@ -14,6 +14,8 @@ public class Mensagem implements IMensagem {
 	private String mensagemGrupo;
 	private ArrayList<Usuario> visualizacaoMensagem = new ArrayList<Usuario>();
 
+
+    public Mensagem(){}
 	public Mensagem(Usuario autor, TipoMensagem tipoMsg, String corpoMsg, Date dataEnvio, String mensagemGrupo) {
 		this.autor = autor;
 		this.tipoMsg = tipoMsg;
@@ -70,7 +72,7 @@ public class Mensagem implements IMensagem {
 		this.visualizacaoMensagem = visualizacaoMensagem;
 	}
 
-    public void imprimeMensagens(Grupo g) {
+    public static void imprimeMensagens(Grupo g) {
         for(Mensagem msg: g.getMensagem()) {
             System.out.println("Quem não visualizou cada mensagem: ");
             System.out.println("Mensagem: " + msg.getCorpoMsg());

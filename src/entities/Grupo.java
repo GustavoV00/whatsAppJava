@@ -47,6 +47,13 @@ public class Grupo implements IGrupo {
 		this.arrayAdm = arrayAdm;
 	}
 
+    @Override
+    public void atualizaQuemNaoVisualizou(Usuario user){
+        for(Mensagem msg : this.getMensagem()){
+            msg.getVisualizacaoMensagem().add(user);
+        }
+    }
+
 	@Override
 	public void notificaObservadores(Mensagem msg){
 		for(Usuario user : this.usuarios){

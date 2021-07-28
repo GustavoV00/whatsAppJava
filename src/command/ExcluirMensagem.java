@@ -1,6 +1,7 @@
 package command;
 
 import entities.*;
+import java.util.ArrayList;
 
 public class ExcluirMensagem implements Command {
     private Usuario u;
@@ -28,24 +29,30 @@ public class ExcluirMensagem implements Command {
 		// está no grupo certo. Após isso, exclui a mensagem, tanto do grupo,
 		// quanto das mensagens enviadas pelo usuario.
 		if(msgAux.getMensagemGrupo() == g.getDescricao()){
+			System.out.println("MENSAGEM QUE FOI EXCLUIDA: " + msgAux.getCorpoMsg());
             String mensagemASerExcluida = msgAux.getCorpoMsg();
 			for(Usuario u : msgAux.getVisualizacaoMensagem()){
                 System.out.println("Usuario que vai ter a mensagem excluida: " + u.getNome());
 				// g.getMensagem().remove(msgAux);
 
 				u.getMensagem().remove(msgAux);
-                removeMensagens(u, mensagemASerExcluida, msgAux);
+                removeMensagens(u, mensagemASerExcluida, msgAux, g);
 			}
 
-			System.out.println("MENSAGEM QUE FOI EXCLUIDA: " + msgAux.getCorpoMsg());
 			System.out.println("Grupo que o usuário enviou a mensagem: "+ g.getDescricao());
 			System.out.println();
 		}
     }
 
-    public static void removeMensagens(Usuario u, String mensagemASerExcluida, Mensagem msgAux){
+    public static void removeMensagens(Usuario u, String mensagemASerExcluida, Mensagem msgAux, Grupo g){
+        ArrayList<Mensagem> mensagensNaoExcluidas = new ArrayList<Mensagem>();
         u.getMensagensGrupo().forEach((grupo, mensagens) -> {
-            mensagens.removeIf(msgRemove -> msgRemove.equals(msgAux));
+            for(Mensagem msg : mensagens){
+                if(msg.getCorpoMsg() != mensagemASerExcluida) 
+                    mensagensNaoExcluidas.add(msg);
+            }
         });
+        u.getMensagensGrupo().put(g.getDescricao(), mensagensNaoExcluidas);
+
     }   
 }

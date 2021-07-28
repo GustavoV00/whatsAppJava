@@ -14,6 +14,7 @@ public class App {
 		Usuario p1 = criadorUsuario.criarUsuario("p1", "419999", "onraine", "foto");
 		Usuario p2 = criadorUsuario.criarUsuario("p2", "439999", "ocupado", "foto");
 		Usuario p3 = criadorUsuario.criarUsuario("p3", "439999", "ausente", "semFoto");
+		Usuario p4 = criadorUsuario.criarUsuario("p4", "439999", "ausente", "semFoto");
 		Grupo g1 = grupo.criarGrupo("g1", p1);
 		Grupo g2 = grupo.criarGrupo("g2", p1);
 
@@ -31,25 +32,30 @@ public class App {
         p3.nomeDoComando("Incluir Usuario");
         p3.nomeDoComando("Enviar Mensagem");
 
+        p4.gerarComandos(TipoMensagem.TEXTO, "P4 QUE ENVIOU PARA G1, MSG 5", g1, p1);
+        p4.nomeDoComando("Incluir Usuario");
+        p4.nomeDoComando("Enviar Mensagem");
 
-        // Seleciona a ultima mensagem do grupo | ou a primeira, tenho que debugar
-        Mensagem msgAux =  g1.getMensagem().get(0);
-        msgAux.imprimeMensagens(g1);
+
+        Mensagem msgAux =  g1.getMensagem().get(2);
 		g1.visualizar(p1, msgAux, usuarioVisualizou, visualizouAux);
-		g1.visualizar(p2, msgAux, usuarioVisualizou, visualizouAux);
+//		g1.visualizar(p2, msgAux, usuarioVisualizou, visualizouAux);
 
-		visualizouAux = atualizaQuemVisualizou(visualizouAux);
-		msgAux =  g1.getMensagem().get(1);
-		g1.visualizar(p1, msgAux, usuarioVisualizou, visualizouAux);
-		g1.visualizar(p2, msgAux, usuarioVisualizou, visualizouAux);
 
-        // p2.nomeDoComando("Excluir Mensagem");
+//		visualizouAux = atualizaQuemVisualizou(visualizouAux);
+//		msgAux =  g1.getMensagem().get(1);
+//		g1.visualizar(p1, msgAux, usuarioVisualizou, visualizouAux);
+//		g1.visualizar(p2, msgAux, usuarioVisualizou, visualizouAux);
+
+        Mensagem.imprimeMensagens(g1);
+        p2.nomeDoComando("Excluir Mensagem");
 
 
 
 		p1.imprimirInformacoesUsuarios(p1, usuarioVisualizou);
-		p1.imprimirInformacoesUsuarios(p2, usuarioVisualizou);
+		p2.imprimirInformacoesUsuarios(p2, usuarioVisualizou);
 		p3.imprimirInformacoesUsuarios(p3, usuarioVisualizou);
+		p4.imprimirInformacoesUsuarios(p4, usuarioVisualizou);
 //		g1.imprimirInformacoesGrupo(g1); 
 //		g2.imprimirInformacoesGrupo(g2); 
     }

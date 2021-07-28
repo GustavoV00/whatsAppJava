@@ -19,8 +19,9 @@ public class IncluiUsuarioComumCommand implements Command {
 		if(adm == g.getArrayAdm().get(0)) {
 			u.getGrupos().add(g);
 			g.getUsuarios().add(u);
-
+            // g.atualizaQuemNaoVisualizou(u);
 		}else
 			System.out.println("Usuario nao eh adiministrador");
+
     }
 }
