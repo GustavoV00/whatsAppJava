@@ -43,7 +43,7 @@ public class App {
 		g1.visualizar(p1, msgAux, usuarioVisualizou, visualizouAux);
 		g1.visualizar(p2, msgAux, usuarioVisualizou, visualizouAux);
 
-        p2.nomeDoComando("Excluir Mensagem");
+        // p2.nomeDoComando("Excluir Mensagem");
 
 
 
