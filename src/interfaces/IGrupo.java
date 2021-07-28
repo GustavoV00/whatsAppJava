@@ -7,5 +7,6 @@ public interface IGrupo {
 	public void imprimirInformacoesGrupo(Grupo g);
 	//public void excluirMensagem(Usuario u, Grupo g);
 	public void notificaObservadores(Mensagem msg);
-	public void visualizar(Usuario user, Mensagem msg);
+	public void visualizar(Usuario user, Mensagem msg, Map<String, ArrayList<String>> usuarioVisualizou, ArrayList<String> visualizouAux);
+
 }

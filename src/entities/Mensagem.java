@@ -70,4 +70,22 @@ public class Mensagem implements IMensagem {
 		this.visualizacaoMensagem = visualizacaoMensagem;
 	}
 
+    public void imprimeMensagens(Grupo g) {
+        for(Mensagem msg: g.getMensagem()) {
+            System.out.println("Quem não visualizou cada mensagem: ");
+            System.out.println("Mensagem: " + msg.getCorpoMsg());
+            for(Usuario u : msg.getVisualizacaoMensagem()) {
+                System.out.println(u.getNome());
+            }
+
+        }
+    }
+
+
+	@Override
+	public String toString() {
+		return "{ " + getCorpoMsg() + " }";
+	}
+
+
 }

@@ -18,7 +18,7 @@ public class Usuario implements IUsuario  {
 	private String foto;
 	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
 	private ArrayList<Mensagem> mensagem = new ArrayList<Mensagem>();
-	public static Map<String, Command> comandos = new HashMap<String, Command>();
+	public Map<String, Command> comandos = new HashMap<String, Command>();
 	private Map<String, ArrayList<Mensagem>> mensagensGrupo = new HashMap<String, ArrayList<Mensagem>>();
 
 	public Usuario(String nome, String telefone, String status, String foto) {
@@ -85,101 +85,65 @@ public class Usuario implements IUsuario  {
 		this.mensagensGrupo = mensagensGrupo;
 	}
 
-	public static void nomeDoComando(String comando){
+	public void nomeDoComando(String comando){
 		comandos.get(comando).executarComando();
 	}
 
-	public static void gerarComandos(Usuario user, TipoMensagem tipo, String str, Grupo g, Usuario adm){
-		comandos.put("Enviar Mensagem", new EnviarMensagemCommand(user, tipo, str, g));
-		comandos.put("Incluir Usuario", new IncluiUsuarioComumCommand(user, adm, g));
+	public void gerarComandos(TipoMensagem tipo, String str, Grupo g, Usuario adm){
+		comandos.put("Enviar Mensagem", new EnviarMensagemCommand(this, tipo, str, g));
+		comandos.put("Incluir Usuario", new IncluiUsuarioComumCommand(this, adm, g));
 		comandos.put("Incluir Usuario Adm", new IncluirUsuarioAdmCommand(adm, g));
-		comandos.put("Excluir Mensagem", new ExcluirMensagem(user, g));
+		comandos.put("Excluir Mensagem", new ExcluirMensagem(this, g));
 	}
 
 	public void atualizarMensagem(String grupo, ArrayList<Mensagem> mensagens){
 		mensagensGrupo.put(grupo, mensagens);
 	}
 
-//	@Override
-//	public void incluirUsuario(Usuario u, Grupo g, Usuario adm) {
-//		if(adm == g.getArrayAdm().get(0)) {
-//			u.getGrupos().add(g);
-//			g.getUsuarios().add(u);
-//
-//		}else
-//			System.out.println("Usuario nao eh adiministrador");
-//	}
-//
-//	@Override
-//	public void incluirAdm(Usuario adm, Grupo g) {
-//		g.getArrayAdm().add(adm);
-//	}
-
 	@Override
-	public void imprimirInformacoesUsuarios(Usuario u, Map<String, ArrayList<Usuario>> usuarioVisualizou){
+	public void imprimirInformacoesUsuarios(Usuario u, Map<String, ArrayList<String>> usuarioVisualizou){
 		System.out.println();
 		System.out.println("Nome: " + u.nome);
 		System.out.println("Telefone: " + u.telefone);
 		System.out.println("Status: " + u.status);
 		System.out.println("Foto: " + u.foto);
 
-		int i = 0;
 		// Imprime a descrição de cada grupo que o usuário pertence
 		System.out.print("Grupos que o usario faz parte: ");
 		System.out.print("{ ");
 		for(Grupo grupo: u.grupos){
 			System.out.print(u.nome + "-" + grupo.getDescricao() + ", ");
-			i += 1;
 		}
 		System.out.println("}");
 
-		i = 0;
 		// Imprime todas as mensagens que vão ser enviadas aos grupos.
 		System.out.print("Mensagens que o usário enviou: ");
 		System.out.print("{ ");
 		for(Mensagem msg: u.getMensagem()){
 			System.out.print("\"" + msg.getCorpoMsg() + "'" + ", ");
-			i += 1;
 		}
 		System.out.print("}\n");
 
 		// Imprime todas as mensagens que vão ser enviadas aos grupos.
-		System.out.print("Mensagens atualizadas: ");
+		System.out.print("Mensagens atualizadas: \n");
+		u.mensagensGrupo.forEach((key, value) -> { Usuario.imprimeMensagensAtualizadas(key, value); });
 
-		i = 0;
-		for(String grupo : u.mensagensGrupo.keySet()){
-			System.out.print("{ ");
-			System.out.print("\"" +  grupo +"\"");
-			
-			System.out.print(" : ");
-	
-			for(ArrayList<Mensagem> msg : u.mensagensGrupo.values()){
-				for(Mensagem corpoMsg : msg){
-					System.out.print("\"" + corpoMsg.getCorpoMsg() +"'" + ", ");
-				}
-			}
-			System.out.println("}");
-		}
+		System.out.println();
 
+		System.out.print("Povo que visualizou as mensagens: \n");
+		usuarioVisualizou.forEach((key, value) -> { imprimeMensagensVisualizadas(key, value); });
 
-		System.out.print("Povo que visualizou as mensagens: { ");
-		for(String grupo : usuarioVisualizou.keySet()){
-			System.out.print("{ ");
-			System.out.print("\"" +  grupo +"\"");
-			System.out.print(" : ");
-			for(ArrayList<Usuario> user: usuarioVisualizou.values()){
-				for(Usuario uu : user){
-					System.out.print("\"" + uu.getNome() +"'" + ", ");
-				}
-			}
-			System.out.println("}");
-		}
+        System.out.println("Quem conhece cada mensagem: \n");
 
-
-
-
-		
 		System.out.println("\n----------------------------------------------");
+	}
+
+	public static void imprimeMensagensAtualizadas(String key, ArrayList<Mensagem> value){
+		System.out.println(key + " : " + value);
+	}
+	
+	public static void imprimeMensagensVisualizadas(String msg, ArrayList<String> user){
+		System.out.println(msg + " : " + user);
 	}
 
 }

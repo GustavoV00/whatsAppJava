@@ -50,13 +50,14 @@ public class Grupo implements IGrupo {
 	@Override
 	public void notificaObservadores(Mensagem msg){
 		for(Usuario user : this.usuarios){
+            // Ta passando um array de mnsagens do grupo.
 			user.atualizarMensagem(this.descricao, this.mensagens);
 			msg.getVisualizacaoMensagem().add(user);
 		}
 	}
 
 	@Override
-	public void imprimirInformacoesGrupo(Grupo g) {
+    public void imprimirInformacoesGrupo(Grupo g) {
 		System.out.println("Grupo: " + g.getDescricao());
 		int indice = 0;
 
@@ -85,10 +86,16 @@ public class Grupo implements IGrupo {
 		System.out.println();
 
 	}
+
 	@Override
-	public void visualizar(Usuario user, Mensagem msg){
+	public void visualizar(Usuario user, Mensagem msg, Map<String, ArrayList<String>> usuarioVisualizou, ArrayList<String> visualizouAux){
 		msg.getVisualizacaoMensagem().remove(user);
+        visualizouAux.add(user.getNome());
+        usuarioVisualizou.put(msg.getCorpoMsg(), visualizouAux);
 	};
+
+
+
 //	@Override
 //	public void excluirMensagem(Usuario u, Grupo g) {
 //		// Criar uma instância, de uma mensagem que tem na lista de usuários

@@ -10,9 +10,9 @@ public class CGrupo extends FactoryGrupo{
 		
 		Grupo g = new Grupo(descricao);
 		
-		Usuario.gerarComandos(criadorDoGrupo, null, null, g, criadorDoGrupo);
-		Usuario.nomeDoComando("Incluir Usuario Adm");
-		Usuario.nomeDoComando("Incluir Usuario");
+		criadorDoGrupo.gerarComandos(null, null, g, criadorDoGrupo);
+		criadorDoGrupo.nomeDoComando("Incluir Usuario Adm");
+		criadorDoGrupo.nomeDoComando("Incluir Usuario");
 
 //		criadorDoGrupo.incluirAdm(criadorDoGrupo, g);
 //		criadorDoGrupo.incluirUsuario(criadorDoGrupo, g, criadorDoGrupo);
