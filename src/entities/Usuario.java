@@ -20,6 +20,7 @@ public class Usuario implements IUsuario  {
 	private ArrayList<Mensagem> mensagem = new ArrayList<Mensagem>();
 	public Map<String, Command> comandos = new HashMap<String, Command>();
 	private Map<String, ArrayList<Mensagem>> mensagensGrupo = new HashMap<String, ArrayList<Mensagem>>();
+	public ArrayList<Mensagem> mensagensExcluidas = new ArrayList<Mensagem>();
 
 	public Usuario(String nome, String telefone, String status, String foto) {
 		this.nome = nome;
@@ -96,8 +97,33 @@ public class Usuario implements IUsuario  {
 		comandos.put("Excluir Mensagem", new ExcluirMensagem(this, g));
 	}
 
+	public ArrayList<Mensagem> removeDuplicatas(ArrayList<Mensagem> mensagens){
+		int quantidade;
+		ArrayList<Mensagem> mensagensReturn = new ArrayList<Mensagem>();
+		for(Mensagem msg : mensagensExcluidas){
+			quantidade = 0;
+			for(Mensagem msg2 : mensagens) {
+				mensagensReturn.add(msg2);
+				if(msg2.getCorpoMsg() == msg.getCorpoMsg() && quantidade == 0){
+					quantidade += 1;
+
+				} else if(msg2.getCorpoMsg() == msg.getCorpoMsg() && quantidade > 0){
+					quantidade += 1;
+					mensagensReturn.remove(msg2);
+				}
+			}
+			if(quantidade == 1) mensagensReturn.remove(msg);
+		}
+		return mensagensReturn;
+	}
+
 	public void atualizarMensagem(String grupo, ArrayList<Mensagem> mensagens){
-		mensagensGrupo.put(grupo, mensagens);
+		if(mensagensExcluidas.size() == 0 )
+			mensagensGrupo.put(grupo, mensagens);
+		else {
+			mensagens = removeDuplicatas(mensagens);
+			mensagensGrupo.put(grupo, mensagens);
+		}
 	}
 
 	@Override

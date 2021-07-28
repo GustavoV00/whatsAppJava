@@ -83,7 +83,6 @@ public class Mensagem implements IMensagem {
         }
     }
 
-
 	@Override
 	public String toString() {
 		return "{ " + getCorpoMsg() + " }";

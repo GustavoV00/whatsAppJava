@@ -37,6 +37,7 @@ public class ExcluirMensagem implements Command {
 
 				u.getMensagem().remove(msgAux);
                 removeMensagens(u, mensagemASerExcluida, msgAux, g);
+                u.mensagensExcluidas.add(msgAux);
 			}
 
 			System.out.println("Grupo que o usuário enviou a mensagem: "+ g.getDescricao());
@@ -48,7 +49,7 @@ public class ExcluirMensagem implements Command {
         ArrayList<Mensagem> mensagensNaoExcluidas = new ArrayList<Mensagem>();
         u.getMensagensGrupo().forEach((grupo, mensagens) -> {
             for(Mensagem msg : mensagens){
-                if(msg.getCorpoMsg() != mensagemASerExcluida) 
+                if(msg.getCorpoMsg() != mensagemASerExcluida && grupo == g.getDescricao()) 
                     mensagensNaoExcluidas.add(msg);
             }
         });
