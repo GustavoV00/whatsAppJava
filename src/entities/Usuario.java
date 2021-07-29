@@ -159,8 +159,6 @@ public class Usuario implements IUsuario  {
 		System.out.print("Povo que visualizou as mensagens: \n");
 		usuarioVisualizou.forEach((key, value) -> { imprimeMensagensVisualizadas(key, value); });
 
-        System.out.println("Quem conhece cada mensagem: \n");
-
 		System.out.println("\n----------------------------------------------");
 	}
 

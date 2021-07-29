@@ -101,6 +101,7 @@ public class App {
         p3.nomeDoComando("Enviar Mensagem");
         p3.nomeDoComando("Excluir Mensagem");
         p3.nomeDoComando("Enviar Mensagem");
+        p3.nomeDoComando("Enviar Mensagem");
     
         msgAux = g3.getMensagem().get(0);
         p3.imprimirInformacoesUsuarios(p3, usuarioVisualizou);
