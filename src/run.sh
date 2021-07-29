@@ -1,5 +1,5 @@
 #!/bin/bash
 
 find . -type f -name "*.class" -delete
-javac App.java
-java App
+javac Programa.java
+java Programa

@@ -1,11 +1,12 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import interfaces.IGrupo;
-import java.util.*;
+import interfaces.Observado;
 
-public class Grupo implements IGrupo {
+public class Grupo implements IGrupo, Observado {
 	private String descricao;
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private ArrayList<Mensagem> mensagens = new ArrayList<Mensagem>();

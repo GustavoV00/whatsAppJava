@@ -5,7 +5,7 @@ import entities.TipoMensagem;
 import entities.*;
 import java.util.*;
 
-public class App {
+public class Programa{
     public static void main(String[] args) throws Exception {
 		Map<String, ArrayList<String>> usuarioVisualizou = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> visualizouAux = new ArrayList<String>();

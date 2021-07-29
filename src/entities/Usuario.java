@@ -10,8 +10,9 @@ import command.IncluiUsuarioComumCommand;
 import command.IncluirUsuarioAdmCommand;
 import command.ExcluirMensagem;
 import interfaces.IUsuario;
+import interfaces.Observador;
 
-public class Usuario implements IUsuario  {
+public class Usuario implements IUsuario, Observador  {
 	private String nome;
 	private String telefone;
 	private String status;
