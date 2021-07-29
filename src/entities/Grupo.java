@@ -95,6 +95,7 @@ public class Grupo implements IGrupo, Observado {
 
 	}
 
+	//Na mensagem há um ArrayList chamado visualizacaoMensagem, que contem todos usuário do grupo. Quando o usuário visuzaliza, ele é removido desse Array, indicando que ele vizualizou a mensagem
 	@Override
 	public void visualizar(Usuario user, Mensagem msg, Map<String, ArrayList<String>> usuarioVisualizou, ArrayList<String> visualizouAux){
 		msg.getVisualizacaoMensagem().remove(user);
@@ -102,32 +103,4 @@ public class Grupo implements IGrupo, Observado {
         usuarioVisualizou.put(msg.getCorpoMsg(), visualizouAux);
 	};
 
-
-
-//	@Override
-//	public void excluirMensagem(Usuario u, Grupo g) {
-//		// Criar uma instância, de uma mensagem que tem na lista de usuários
-//		Mensagem msgAux = u.getMensagem().get(0);
-//		// Percorre todas as mensagens, que o usuario enviou em todos os grupos
-//		// E encontra a ultima mensagem, que o usuario enviou ao grupo. 
-//		for(Mensagem msg: u.getMensagem()){
-//			if(msg.getMensagemGrupo() == g.getDescricao()){
-//				msgAux = msg;
-//				
-//			} 
-//		}
-//
-//		// Após encontrar a mensagem, faz uma verificação final, se a mensagem
-//		// está no grupo certo. Após isso, exclui a mensagem, tanto do grupo,
-//		// quanto das mensagens enviadas pelo usuario.
-//		if(msgAux.getMensagemGrupo() == g.getDescricao()){
-//			g.getMensagem().remove(msgAux);
-//			u.getMensagem().remove(msgAux);
-//
-//			System.out.println("MENSAGEM QUE FOI EXCLUIDA: " + msgAux.getCorpoMsg());
-//			System.out.println("Usuario que enviou a mensagem: " + u.getNome());
-//			System.out.println("Grupo que o usuário enviou a mensagem: "+ g.getDescricao());
-//			System.out.println();
-//		}
-//}
 }

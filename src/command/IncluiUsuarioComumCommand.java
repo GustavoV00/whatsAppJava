@@ -16,10 +16,10 @@ public class IncluiUsuarioComumCommand implements Command {
 
     @Override
     public void executarComando() {
+        //verifica se o usuario que esta incerindo o usuario é o administrador do grupo
 		if(adm == g.getArrayAdm().get(0)) {
 			u.getGrupos().add(g);
 			g.getUsuarios().add(u);
-            // g.atualizaQuemNaoVisualizou(u);
 		}else
 			System.out.println("Usuario nao eh adiministrador");
 

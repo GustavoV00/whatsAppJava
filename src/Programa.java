@@ -8,6 +8,9 @@ import java.util.*;
 public class Programa{
     public static void main(String[] args) throws Exception {
 		Map<String, ArrayList<String>> usuarioVisualizou = new HashMap<String, ArrayList<String>>();
+        // O ArrayList visualizouAux serve para indicar os usuários que visualizaram. Como o testes indicado pelo professor são bem especifico.
+        // A indicação de quem visualizou cada mensagem foi feita de forma manual.
+        // Então esse arraylist é sempre resetado de forma a não ter um usuário visualizando a mesma mensagem mensagem duas vezes ou mais.
 		ArrayList<String> visualizouAux = new ArrayList<String>();
 		CUsuario criadorUsuario = new CUsuario();
 		CGrupo grupo = new CGrupo();
@@ -100,7 +103,6 @@ public class Programa{
     
         p3.nomeDoComando("Enviar Mensagem");
         p3.nomeDoComando("Excluir Mensagem");
-        p3.nomeDoComando("Enviar Mensagem");
         p3.nomeDoComando("Enviar Mensagem");
     
         msgAux = g3.getMensagem().get(0);

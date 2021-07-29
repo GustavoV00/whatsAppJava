@@ -98,6 +98,11 @@ public class Usuario implements IUsuario, Observador  {
 		comandos.put("Excluir Mensagem", new ExcluirMensagem(this, g));
 	}
 
+	// Caso um usuario envie alguma mensagem apague essa mensagem e envie a mesma mensagem novamente. 
+	// Essa função verifica se existe duplicata de uma mesma mensagem. E caso exista, apaga as duplicatas 
+	// E envia somente uma mensagem.
+	// Essa função também resolve o problema de quando algum usuriário cancela sua mensagem 
+	// E outro usuário envia uma mensagem de o Observado não atualizar o usuário com mensagens que ele cancelou.
 	public ArrayList<Mensagem> removeDuplicatas(ArrayList<Mensagem> mensagens){
 		int quantidade;
 		ArrayList<Mensagem> mensagensReturn = new ArrayList<Mensagem>();

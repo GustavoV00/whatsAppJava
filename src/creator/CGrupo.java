@@ -14,8 +14,6 @@ public class CGrupo extends FactoryGrupo{
 		criadorDoGrupo.nomeDoComando("Incluir Usuario Adm");
 		criadorDoGrupo.nomeDoComando("Incluir Usuario");
 
-//		criadorDoGrupo.incluirAdm(criadorDoGrupo, g);
-//		criadorDoGrupo.incluirUsuario(criadorDoGrupo, g, criadorDoGrupo);
 		return g;
 	}
 }
