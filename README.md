@@ -1,8 +1,3 @@
-### Nomes ###
-Gustavo Valente - GRR: 20182557 
-Kokouvi hola kanyi kodjovi - GRR: 20170300 
-Bruno Oshiro Vieira - GRR: 20171902
-
 ### Estrutura de pacotes do projeto ###
 Os pacotes são os seguintes:
     interfaces: Indica as interfaces que foram utilizadas. 
